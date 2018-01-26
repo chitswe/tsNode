@@ -1,2 +1,2 @@
 # tsNode
-Typescript vscode and nodejs development environment
+Typescript Visual Studio Code and nodejs development environment
