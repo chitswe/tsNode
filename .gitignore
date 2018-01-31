@@ -1,5 +1,6 @@
 node_modules/
 npm-debug.log
 config/
+migrations/compiled/
 dist/
 .DS_Store
