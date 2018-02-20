@@ -5,9 +5,9 @@ import { DataType } from "sequelize-typescript";
  * Represent EmployeeGroup model.(Department)
  */
 class EmployeeGroup extends Model<EmployeeGroup> {
-    /**
-     * Name of employee group
-     */
+  /**
+   * Name of employee group
+   */
   @Column({
     type: DataType.STRING(20),
     allowNull: false,
@@ -23,9 +23,8 @@ class EmployeeGroup extends Model<EmployeeGroup> {
    */
   @Column(DataType.DATE) CheckInTime?: Date;
   /**
-   * Check out time for employee group. If check out time is specified, global check out time will be override for every employee under this group. 
+   * Check out time for employee group. If check out time is specified, global check out time will be override for every employee under this group.
    */
   @Column(DataType.DATE) CheckOutTime?: Date;
 }
-
 export default EmployeeGroup;

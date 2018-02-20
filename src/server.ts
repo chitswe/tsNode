@@ -1,24 +1,25 @@
 import * as express from "express";
-import { sequelize } from "./sequelize";
-import * as bodyParser from "body-parser";
-import { graphiqlExpress, graphqlExpress } from "apollo-server-express";
+import sequelize from "./sequelize";
+import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import { makeExecutableSchema } from "graphql-tools";
-import Schema from "./data/schema";
-import Resolver from "./data/resolver";
-import "./common/date.extensions";
-const app =  express();
-const port: number = Number(process.env.PORT) ||  3030;
-const schema = makeExecutableSchema({ typeDefs: Schema, resolvers: Resolver });
+import * as bodyParser from "body-parser";
+import schema from "./data/schema";
+import resolvers from "./data/resolver";
+import { setTimeout } from "timers";
+const Schema = makeExecutableSchema({ typeDefs: schema, resolvers });
+const app = express();
+const port: number = Number(process.env.PORT) || 3030;
 app.use(bodyParser.json());
-app.use("/graphql", graphqlExpress({ schema }));
+app.use("/graphql", (req, res, nex) => {
+  setTimeout(nex, 1000);
+});
+app.use("/graphql", graphqlExpress({ schema: Schema }));
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
-console.log(".....");
-sequelize.sync()
-.then(() => {
-    console.log("then ....");
-    app.listen(port, () => {
-        console.log(`Server is running on port : ${port}`);
-    });
-}).catch(e => {
-    console.log(e.message);
+app.use("*", (req, res) => {
+  res.status(200).send("success");
+});
+sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port : ${port}`);
+  });
 });

@@ -29,8 +29,4 @@ const Preference = {
         }
     }
 };
-
-
-
 export default Preference;
-

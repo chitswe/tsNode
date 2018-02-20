@@ -4,10 +4,13 @@ import * as fs from "fs";
 const configs = JSON.parse(fs.readFileSync(__dirname + "/../config/db.config.json", "utf8"));
 const env = process.env.NODE_ENV || "development";
 const config = configs[env];
-export const sequelize: Sequelize =  new Sequelize({
+console.log(`Model path is ${__dirname}`);
+ const sequelize: Sequelize =  new Sequelize({
     ...config,
     modelPaths: [
         __dirname + "/models"
     ]
 });
+
+export default sequelize;
 

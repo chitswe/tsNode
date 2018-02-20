@@ -7,12 +7,16 @@ const type = `
 		CheckOutTime:DateTime
 		deletedAt:DateTime
     }
+    type EmployeeGroups{
+        list:[EmployeeGroup]
+        pagination:pagination
+    }
 `;
-
 const query = `
-    EmployeeGroups:[EmployeeGroup]
+    EmployeeGroups(criteria:criteria!):EmployeeGroups
 `;
-const mutation = ``;
+const mutation = `
+`;
 const schema: ISchema = {
   type,
   query,

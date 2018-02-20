@@ -16,7 +16,7 @@
     "compile-mig": "tsc --p mig-tsconfig.json",
     "clean-mig": "rm -r migrations/compiled/*",
     "recompile-mig": "npm run clean-mig && npm run compile-mig",
-    "compile-seed": "tsc seeders/*.ts",
+    "compile-seed": "tsc --p seed-tsconfig.json && mv seeders/compiled/*.js seeders/",
     "clean-seed": "rm seeders/*.js",
     "recompile-seed": "npm run clean-seed && npm run compile-seed",
     "cp-assets": "ts-node copyStaticAssets.ts"
