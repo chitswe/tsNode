@@ -8,7 +8,7 @@ import resolvers from "./data/resolver";
 import { setTimeout } from "timers";
 const Schema = makeExecutableSchema({ typeDefs: schema, resolvers });
 const app = express();
-const port: number = Number(process.env.PORT) || 3030;
+const port: number = Number(process.env.PORT) || 3031;
 app.use(bodyParser.json());
 app.use("/graphql", (req, res, nex) => {
   setTimeout(nex, 1000);
